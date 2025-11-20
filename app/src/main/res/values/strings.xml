@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Мой Переводчик</string>
+    <string name="translate">Перевод</string>
+    <string name="history">История</string>
+    <string name="enter_text">Введите текст для перевода</string>
+    <string name="translate_button">Перевести</string>
+    <string name="result">Результат перевода</string>
+    <string name="empty_history">История переводов пуста</string>
+    <string name="favorites">Избранное</string>
+    <string name="by_popularity">По популярности</string>
+    <string name="copied_to_clipboard">Перевод скопирован</string>
+</resources>
