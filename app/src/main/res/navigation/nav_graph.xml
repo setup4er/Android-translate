@@ -17,4 +17,16 @@
         android:label="История"
         tools:layout="@layout/fragment_history" />
 
+    <fragment
+        android:id="@+id/favoritesFragment"
+        android:name="com.example.kursovaya.ui.fragments.FavoritesFragment"
+        android:label="Избранное"
+        tools:layout="@layout/fragment_history" />
+
+    <fragment
+        android:id="@+id/popularFragment"
+        android:name="com.example.kursovaya.ui.fragments.PopularFragment"
+        android:label="Популярные"
+        tools:layout="@layout/fragment_history" />
+
 </navigation>

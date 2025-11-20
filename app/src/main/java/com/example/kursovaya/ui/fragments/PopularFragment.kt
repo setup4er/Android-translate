@@ -16,7 +16,7 @@ import com.example.kursovaya.ui.viewmodels.TranslationViewModelFactory
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
-class HistoryFragment : Fragment() {
+class PopularFragment : Fragment() {
 
     private var _binding: FragmentHistoryBinding? = null
     private val binding get() = _binding!!
@@ -38,7 +38,7 @@ class HistoryFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupRecyclerView()
-        loadHistory()
+        loadPopular()
     }
 
     private fun setupRecyclerView() {
@@ -57,11 +57,11 @@ class HistoryFragment : Fragment() {
         }
     }
 
-    private fun loadHistory() {
+    private fun loadPopular() {
         viewLifecycleOwner.lifecycleScope.launch {
-            viewModel.history.collectLatest { history ->
-                historyAdapter.submitList(history)
-                updateEmptyState(history.isEmpty(), "История переводов пуста")
+            viewModel.historyByUsage.collectLatest { popular ->
+                historyAdapter.submitList(popular)
+                updateEmptyState(popular.isEmpty(), "Нет популярных переводов")
             }
         }
     }
