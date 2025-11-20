@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.kursovaya.databinding.FragmentAboutBinding
+import com.example.kursovaya.utils.WindowInsetsHelper
 
 class AboutFragment : Fragment() {
 
@@ -24,6 +25,10 @@ class AboutFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        // Добавляем отступы для избежания перекрытия с нижней панелью
+        WindowInsetsHelper.addBottomPaddingToView(binding.root)
+
         setupUI()
     }
 
@@ -31,7 +36,6 @@ class AboutFragment : Fragment() {
         // Основная информация
         binding.appName.text = "Мой Переводчик"
         binding.versionInfo.text = "Версия 1.0"
-        binding.releaseDate.text = "Дата выпуска: 20 ноября 2025"
         binding.developerInfo.text = "Разработано с ❤️ для удобного перевода"
 
         // Описание приложения
@@ -48,20 +52,6 @@ class AboutFragment : Fragment() {
             Приложение использует передовые технологии машинного перевода для обеспечения точных и качественных результатов.
         """.trimIndent()
 
-        // Кнопка обратной связи
-        binding.feedbackButton.setOnClickListener {
-            sendFeedback()
-        }
-
-        // Кнопка оценки приложения
-        binding.rateButton.setOnClickListener {
-            rateApp()
-        }
-
-        // Кнопка политики конфиденциальности
-        binding.privacyButton.setOnClickListener {
-            showPrivacyPolicy()
-        }
     }
 
     private fun sendFeedback() {

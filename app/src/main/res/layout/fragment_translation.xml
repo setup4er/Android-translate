@@ -1,23 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="20dp"
+    android:paddingBottom="80dp"
     android:background="?android:attr/colorBackground">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="wrap_content">
 
         <!-- Header -->
         <LinearLayout
-            android:layout_width="match_parent"
+            android:id="@+id/headerLayout"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:gravity="center_vertical"
-            android:layout_marginBottom="24dp">
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
                 android:layout_width="32dp"
@@ -39,12 +43,16 @@
 
         <!-- Input Card -->
         <com.google.android.material.card.MaterialCardView
-            android:layout_width="match_parent"
+            android:id="@+id/inputCard"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             app:cardCornerRadius="20dp"
             app:cardElevation="6dp"
-            android:layout_marginBottom="20dp"
-            app:cardBackgroundColor="?attr/colorSurface">
+            app:cardBackgroundColor="?attr/colorSurface"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/headerLayout"
+            android:layout_marginTop="24dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -85,162 +93,147 @@
 
                 </com.google.android.material.textfield.TextInputLayout>
 
-                <!-- Language Selection -->
-                <LinearLayout
+                <!-- Source Language -->
+                <TextView
+                    android:id="@+id/sourceLanguageLabel"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical"
+                    android:text="Исходный язык"
+                    android:textSize="14sp"
+                    android:textColor="?attr/colorOnSurfaceVariant"
+                    android:layout_marginBottom="8dp" />
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/sourceLanguageCard"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="2dp"
+                    app:cardBackgroundColor="?attr/colorSurfaceVariant"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?attr/selectableItemBackground"
+                    android:layout_marginBottom="12dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingVertical="12dp"
+                        android:paddingStart="16dp"
+                        android:paddingEnd="12dp"
+                        android:gravity="center_vertical">
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@drawable/ic_language"
+                            android:tint="?attr/colorOnSurfaceVariant"
+                            android:layout_marginEnd="12dp" />
+
+                        <TextView
+                            android:id="@+id/sourceLanguageText"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="Русский"
+                            android:textSize="16sp"
+                            android:textColor="?attr/colorOnSurface"
+                            android:singleLine="true"
+                            android:maxLines="1"
+                            android:ellipsize="end"
+                            android:gravity="center_vertical"
+                            tools:text="Русский" />
+
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@drawable/ic_arrow_drop_down"
+                            android:tint="?attr/colorOnSurfaceVariant" />
+
+                    </LinearLayout>
+
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- Swap Button - Centered between language cards -->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/swapLanguagesButton"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_gravity="center_horizontal"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:src="@drawable/ic_swap"
+                    app:icon="@drawable/ic_swap"
+                    app:iconTint="?attr/colorPrimary"
+                    app:iconGravity="textStart"
+                    android:layout_marginVertical="8dp"
+                    style="@style/Widget.Material3.Button.Icon"
+                    app:cornerRadius="24dp" />
+
+                <!-- Target Language -->
+                <TextView
+                    android:id="@+id/targetLanguageLabel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Целевой язык"
+                    android:textSize="14sp"
+                    android:textColor="?attr/colorOnSurfaceVariant"
+                    android:layout_marginBottom="8dp"
+                    android:layout_marginTop="4dp" />
+
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/targetLanguageCard"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="2dp"
+                    app:cardBackgroundColor="?attr/colorSurfaceVariant"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:foreground="?attr/selectableItemBackground"
                     android:layout_marginBottom="20dp">
 
                     <LinearLayout
-                        android:id="@+id/sourceLanguageContainer"
-                        android:layout_width="0dp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:layout_marginEnd="16dp"
-                        android:orientation="vertical">
+                        android:orientation="horizontal"
+                        android:paddingVertical="12dp"
+                        android:paddingStart="16dp"
+                        android:paddingEnd="12dp"
+                        android:gravity="center_vertical">
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:src="@drawable/ic_language"
+                            android:tint="?attr/colorOnSurfaceVariant"
+                            android:layout_marginEnd="12dp" />
 
                         <TextView
-                            android:layout_width="match_parent"
+                            android:id="@+id/targetLanguageText"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:text="Исходный язык"
-                            android:textSize="14sp"
-                            android:textColor="?attr/colorOnSurfaceVariant"
-                            android:layout_marginBottom="8dp" />
+                            android:layout_weight="1"
+                            android:text="Английский"
+                            android:textSize="16sp"
+                            android:textColor="?attr/colorOnSurface"
+                            android:singleLine="true"
+                            android:maxLines="1"
+                            android:ellipsize="end"
+                            android:gravity="center_vertical"
+                            tools:text="Английский" />
 
-                        <com.google.android.material.card.MaterialCardView
-                            android:id="@+id/sourceLanguageCard"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            app:cardCornerRadius="12dp"
-                            app:cardElevation="2dp"
-                            app:cardBackgroundColor="?attr/colorSurfaceVariant"
-                            android:clickable="true"
-                            android:focusable="true"
-                            android:foreground="?attr/selectableItemBackground">
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="horizontal"
-                                android:paddingVertical="12dp"
-                                android:paddingStart="16dp"
-                                android:paddingEnd="12dp"
-                                android:gravity="center_vertical">
-
-                                <ImageView
-                                    android:layout_width="20dp"
-                                    android:layout_height="20dp"
-                                    android:src="@drawable/ic_language"
-                                    android:tint="?attr/colorOnSurfaceVariant"
-                                    android:layout_marginEnd="12dp" />
-
-                                <TextView
-                                    android:id="@+id/sourceLanguageText"
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1"
-                                    android:text="Русский"
-                                    android:textSize="16sp"
-                                    android:textColor="?attr/colorOnSurface"
-                                    android:singleLine="true"
-                                    android:maxLines="1"
-                                    android:ellipsize="none"
-                                    android:gravity="center_vertical" />
-
-                                <ImageView
-                                    android:layout_width="24dp"
-                                    android:layout_height="24dp"
-                                    android:src="@drawable/ic_arrow_drop_down"
-                                    android:tint="?attr/colorOnSurfaceVariant" />
-
-                            </LinearLayout>
-
-                        </com.google.android.material.card.MaterialCardView>
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@drawable/ic_arrow_drop_down"
+                            android:tint="?attr/colorOnSurfaceVariant" />
 
                     </LinearLayout>
 
-                    <ImageButton
-                        android:id="@+id/swapLanguagesButton"
-                        android:layout_width="48dp"
-                        android:layout_height="48dp"
-                        android:background="?attr/selectableItemBackgroundBorderless"
-                        android:src="@drawable/ic_swap"
-                        app:tint="?attr/colorPrimary"
-                        android:layout_marginHorizontal="8dp" />
+                </com.google.android.material.card.MaterialCardView>
 
-                    <LinearLayout
-                        android:id="@+id/targetLanguageContainer"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:layout_marginStart="16dp"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="Целевой язык"
-                            android:textSize="14sp"
-                            android:textColor="?attr/colorOnSurfaceVariant"
-                            android:layout_marginBottom="8dp" />
-
-                        <com.google.android.material.card.MaterialCardView
-                            android:id="@+id/targetLanguageCard"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            app:cardCornerRadius="12dp"
-                            app:cardElevation="2dp"
-                            app:cardBackgroundColor="?attr/colorSurfaceVariant"
-                            android:clickable="true"
-                            android:focusable="true"
-                            android:foreground="?attr/selectableItemBackground">
-
-                            <LinearLayout
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:orientation="horizontal"
-                                android:paddingVertical="12dp"
-                                android:paddingStart="16dp"
-                                android:paddingEnd="12dp"
-                                android:gravity="center_vertical">
-
-                                <ImageView
-                                    android:layout_width="20dp"
-                                    android:layout_height="20dp"
-                                    android:src="@drawable/ic_language"
-                                    android:tint="?attr/colorOnSurfaceVariant"
-                                    android:layout_marginEnd="12dp" />
-
-                                <TextView
-                                    android:id="@+id/targetLanguageText"
-                                    android:layout_width="0dp"
-                                    android:layout_height="wrap_content"
-                                    android:layout_weight="1"
-                                    android:text="Английский"
-                                    android:textSize="16sp"
-                                    android:textColor="?attr/colorOnSurface"
-                                    android:singleLine="true"
-                                    android:maxLines="1"
-                                    android:ellipsize="none"
-                                    android:gravity="center_vertical" />
-
-                                <ImageView
-                                    android:layout_width="24dp"
-                                    android:layout_height="24dp"
-                                    android:src="@drawable/ic_arrow_drop_down"
-                                    android:tint="?attr/colorOnSurfaceVariant" />
-
-                            </LinearLayout>
-
-                        </com.google.android.material.card.MaterialCardView>
-
-                    </LinearLayout>
-
-                </LinearLayout>
-
-                <!-- Beautiful Translate Button -->
+                <!-- Translate Button -->
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/translateButton"
                     android:layout_width="match_parent"
@@ -263,12 +256,16 @@
         <!-- Result Card -->
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/resultCard"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:visibility="gone"
             app:cardCornerRadius="20dp"
             app:cardElevation="6dp"
-            app:cardBackgroundColor="?attr/colorSurface">
+            app:cardBackgroundColor="?attr/colorSurface"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/inputCard"
+            android:layout_marginTop="20dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -297,10 +294,19 @@
                     android:textColor="?attr/colorOnSurface"
                     android:lineSpacingExtra="4dp" />
 
+                <View
+                    android:id="@+id/bottomSpacer"
+                    android:layout_width="match_parent"
+                    android:layout_height="72dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/resultCard"
+                    android:visibility="visible" />
             </LinearLayout>
 
         </com.google.android.material.card.MaterialCardView>
 
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </ScrollView>

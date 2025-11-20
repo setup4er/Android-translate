@@ -3,7 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp">
+    android:padding="16dp"
+    android:paddingBottom="80dp"
+    android:background="?android:attr/colorBackground">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -16,7 +18,8 @@
             android:layout_height="wrap_content"
             app:cardCornerRadius="12dp"
             app:cardElevation="2dp"
-            android:layout_marginBottom="16dp">
+            android:layout_marginBottom="16dp"
+            app:cardBackgroundColor="?attr/colorSurface">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -40,6 +43,7 @@
                     android:text="Мой Переводчик"
                     android:textSize="24sp"
                     android:textStyle="bold"
+                    android:textColor="?attr/colorOnSurface"
                     android:layout_marginBottom="8dp" />
 
                 <TextView
@@ -50,16 +54,6 @@
                     android:text="Версия 1.0"
                     android:textSize="14sp"
                     android:layout_marginBottom="4dp" />
-
-                <TextView
-                    android:id="@+id/releaseDate"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="Дата выпуска: 20 ноября 2025"
-                    android:textSize="12sp"
-                    android:textColor="?attr/colorOnSurfaceVariant"
-                    android:layout_marginBottom="16dp" />
 
                 <TextView
                     android:id="@+id/developerInfo"
@@ -80,7 +74,8 @@
             android:layout_height="wrap_content"
             app:cardCornerRadius="12dp"
             app:cardElevation="2dp"
-            android:layout_marginBottom="16dp">
+            android:layout_marginBottom="16dp"
+            app:cardBackgroundColor="?attr/colorSurface">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -94,67 +89,26 @@
                     android:text="О приложении"
                     android:textSize="18sp"
                     android:textStyle="bold"
+                    android:textColor="?attr/colorOnSurface"
                     android:layout_marginBottom="12dp" />
 
                 <TextView
                     android:id="@+id/appDescription"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Описание приложения..."
+                    android:text="&quot;Мой Переводчик&quot; - это современное приложение для мгновенного перевода текста между различными языками.
+
+Основные возможности:
+• Перевод текста на 10+ языков
+• История всех переводов
+• Избранные переводы
+• Статистика популярных слов
+• Темная и светлая темы
+
+Приложение использует передовые технологии машинного перевода для обеспечения точных и качественных результатов."
                     android:textSize="14sp"
+                    android:textColor="?attr/colorOnSurface"
                     android:lineSpacingExtra="4dp" />
-
-            </LinearLayout>
-
-        </com.google.android.material.card.MaterialCardView>
-
-        <!-- Действия -->
-        <com.google.android.material.card.MaterialCardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:cardCornerRadius="12dp"
-            app:cardElevation="2dp"
-            android:layout_marginBottom="16dp">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:padding="16dp">
-
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Действия"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
-                    android:layout_marginBottom="12dp" />
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/feedbackButton"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Обратная связь"
-                    style="@style/Widget.Material3.Button.OutlinedButton"
-                    app:icon="@drawable/ic_feedback"
-                    android:layout_marginBottom="8dp" />
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/rateButton"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Оценить приложение"
-                    style="@style/Widget.Material3.Button.OutlinedButton"
-                    app:icon="@drawable/ic_star"
-                    android:layout_marginBottom="8dp" />
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/privacyButton"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Политика конфиденциальности"
-                    style="@style/Widget.Material3.Button.OutlinedButton"
-                    app:icon="@drawable/ic_privacy" />
 
             </LinearLayout>
 

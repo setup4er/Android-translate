@@ -59,11 +59,11 @@ class TranslationFragment : Fragment() {
 
         // Обработчики для выбора языков
         binding.sourceLanguageCard.setOnClickListener {
-            showLanguageSelectionDialog(true) // true - для исходного языка
+            showLanguageSelectionDialog(true)
         }
 
         binding.targetLanguageCard.setOnClickListener {
-            showLanguageSelectionDialog(false) // false - для целевого языка
+            showLanguageSelectionDialog(false)
         }
 
         // Кнопка перевода
