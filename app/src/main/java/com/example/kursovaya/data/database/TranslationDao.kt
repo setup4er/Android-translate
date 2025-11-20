@@ -10,9 +10,6 @@ interface TranslationDao {
     @Query("SELECT * FROM translation_history ORDER BY timestamp DESC")
     fun getAllHistory(): Flow<List<TranslationHistory>>
 
-    @Query("SELECT * FROM translation_history WHERE isFavorite = 1 ORDER BY timestamp DESC")
-    fun getFavorites(): Flow<List<TranslationHistory>>
-
     @Query("SELECT * FROM translation_history WHERE originalText = :text AND sourceLanguage = :sourceLang AND targetLanguage = :targetLang")
     suspend fun findTranslation(text: String, sourceLang: String, targetLang: String): TranslationHistory?
 
@@ -33,4 +30,8 @@ interface TranslationDao {
 
     @Query("DELETE FROM translation_history")
     suspend fun deleteAll()
+
+    // Изменяем этот метод - возвращаем Flow вместо List
+    @Query("SELECT * FROM translation_history WHERE isFavorite = 1 ORDER BY originalText")
+    fun getFavorites(): Flow<List<TranslationHistory>>
 }

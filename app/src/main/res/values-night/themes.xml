@@ -16,4 +16,7 @@
         <!-- Status bar -->
         <item name="android:statusBarColor">@android:color/transparent</item>
     </style>
+    <style name="ThemeOverlay.App.MaterialAlertDialog" parent="ThemeOverlay.Material3.MaterialAlertDialog">
+        <item name="android:windowBackground">@android:color/transparent</item>
+    </style>
 </resources>

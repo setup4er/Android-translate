@@ -68,6 +68,7 @@ class TranslationRepository(private val translationDao: TranslationDao) {
         return translationDao.getAllHistory()
     }
 
+    // Этот метод уже правильный - возвращает Flow
     fun getFavorites(): Flow<List<TranslationHistory>> {
         return translationDao.getFavorites()
     }

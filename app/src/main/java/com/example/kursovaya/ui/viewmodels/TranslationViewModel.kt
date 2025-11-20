@@ -19,7 +19,7 @@ class TranslationViewModel(private val repository: TranslationRepository) : View
 
     // Используем Flow из репозитория
     val history = repository.getHistory()
-    val favorites = repository.getFavorites()
+    val favorites = repository.getFavorites()  // Этот метод теперь будет работать
     val historyByUsage = repository.getHistoryByUsage()
 
     fun translateText(text: String, sourceLang: String, targetLang: String) {
@@ -48,7 +48,7 @@ class TranslationViewModel(private val repository: TranslationRepository) : View
     fun clearTranslationResult() {
         _translationResult.value = null
     }
-    // Добавьте этот метод в TranslationViewModel
+
     fun clearAllData() {
         viewModelScope.launch {
             repository.clearAllData()
