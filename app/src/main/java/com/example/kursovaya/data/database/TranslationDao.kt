@@ -1,10 +1,6 @@
 package com.example.kursovaya.data.database
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
-import androidx.room.Update
+import androidx.room.*
 import com.example.kursovaya.data.models.TranslationHistory
 import kotlinx.coroutines.flow.Flow
 
@@ -20,15 +16,21 @@ interface TranslationDao {
     @Query("SELECT * FROM translation_history WHERE originalText = :text AND sourceLanguage = :sourceLang AND targetLanguage = :targetLang")
     suspend fun findTranslation(text: String, sourceLang: String, targetLang: String): TranslationHistory?
 
-    @Insert(onConflict = OnConflictStrategy.Companion.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insertTranslation(translation: TranslationHistory)
 
     @Update
     suspend fun updateTranslation(translation: TranslationHistory)
 
     @Query("DELETE FROM translation_history WHERE id = :id")
-    suspend fun deleteTranslation(id: Long)
+    suspend fun deleteTranslationById(id: Long)
+
+    @Delete
+    suspend fun deleteTranslation(translation: TranslationHistory)
 
     @Query("SELECT * FROM translation_history ORDER BY usageCount DESC")
     fun getHistoryByUsage(): Flow<List<TranslationHistory>>
+
+    @Query("DELETE FROM translation_history")
+    suspend fun deleteAll()
 }

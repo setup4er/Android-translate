@@ -29,4 +29,16 @@
         android:label="Популярные"
         tools:layout="@layout/fragment_history" />
 
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.example.kursovaya.ui.fragments.SettingsFragment"
+        android:label="Настройки"
+        tools:layout="@layout/fragment_settings" />
+
+    <fragment
+        android:id="@+id/aboutFragment"
+        android:name="com.example.kursovaya.ui.fragments.AboutFragment"
+        android:label="О приложении"
+        tools:layout="@layout/fragment_about" />
+
 </navigation>

@@ -16,4 +16,12 @@
         android:id="@+id/popularFragment"
         android:icon="@drawable/ic_star"
         android:title="Популярные" />
+    <item
+        android:id="@+id/settingsFragment"
+        android:icon="@drawable/ic_settings"
+        android:title="Настройки" />
+    <item
+        android:id="@+id/aboutFragment"
+        android:icon="@drawable/ic_about"
+        android:title="О приложении" />
 </menu>

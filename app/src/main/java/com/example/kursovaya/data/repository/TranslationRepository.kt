@@ -82,6 +82,10 @@ class TranslationRepository(private val translationDao: TranslationDao) {
     }
 
     suspend fun deleteTranslation(translation: TranslationHistory) {
-        translationDao.deleteTranslation(translation.id)
+        translationDao.deleteTranslation(translation)
+    }
+
+    suspend fun clearAllData() {
+        translationDao.deleteAll()
     }
 }

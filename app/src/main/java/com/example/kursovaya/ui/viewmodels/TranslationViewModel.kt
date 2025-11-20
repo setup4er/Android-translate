@@ -48,4 +48,10 @@ class TranslationViewModel(private val repository: TranslationRepository) : View
     fun clearTranslationResult() {
         _translationResult.value = null
     }
+    // Добавьте этот метод в TranslationViewModel
+    fun clearAllData() {
+        viewModelScope.launch {
+            repository.clearAllData()
+        }
+    }
 }
