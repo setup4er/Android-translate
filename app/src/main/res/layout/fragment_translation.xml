@@ -70,7 +70,8 @@
                     app:boxCornerRadiusBottomStart="12dp"
                     app:boxCornerRadiusTopEnd="12dp"
                     app:boxCornerRadiusTopStart="12dp"
-                    app:endIconMode="clear_text">
+                    app:endIconMode="clear_text"
+                    app:startIconDrawable="@drawable/ic_text_field">
 
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/inputText"
@@ -92,26 +93,73 @@
                     android:gravity="center_vertical"
                     android:layout_marginBottom="20dp">
 
-                    <com.google.android.material.textfield.TextInputLayout
-                        style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                    <LinearLayout
+                        android:id="@+id/sourceLanguageContainer"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:layout_marginEnd="12dp"
-                        app:boxCornerRadiusBottomEnd="12dp"
-                        app:boxCornerRadiusBottomStart="12dp"
-                        app:boxCornerRadiusTopEnd="12dp"
-                        app:boxCornerRadiusTopStart="12dp">
+                        android:layout_marginEnd="16dp"
+                        android:orientation="vertical">
 
-                        <com.google.android.material.textfield.MaterialAutoCompleteTextView
-                            android:id="@+id/sourceLanguageDropdown"
+                        <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="Исходный язык"
-                            android:textColor="?attr/colorOnSurface"
-                            android:textColorHint="?attr/colorOnSurfaceVariant" />
+                            android:text="Исходный язык"
+                            android:textSize="14sp"
+                            android:textColor="?attr/colorOnSurfaceVariant"
+                            android:layout_marginBottom="8dp" />
 
-                    </com.google.android.material.textfield.TextInputLayout>
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/sourceLanguageCard"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:cardCornerRadius="12dp"
+                            app:cardElevation="2dp"
+                            app:cardBackgroundColor="?attr/colorSurfaceVariant"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:foreground="?attr/selectableItemBackground">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:paddingVertical="12dp"
+                                android:paddingStart="16dp"
+                                android:paddingEnd="12dp"
+                                android:gravity="center_vertical">
+
+                                <ImageView
+                                    android:layout_width="20dp"
+                                    android:layout_height="20dp"
+                                    android:src="@drawable/ic_language"
+                                    android:tint="?attr/colorOnSurfaceVariant"
+                                    android:layout_marginEnd="12dp" />
+
+                                <TextView
+                                    android:id="@+id/sourceLanguageText"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:text="Русский"
+                                    android:textSize="16sp"
+                                    android:textColor="?attr/colorOnSurface"
+                                    android:singleLine="true"
+                                    android:maxLines="1"
+                                    android:ellipsize="none"
+                                    android:gravity="center_vertical" />
+
+                                <ImageView
+                                    android:layout_width="24dp"
+                                    android:layout_height="24dp"
+                                    android:src="@drawable/ic_arrow_drop_down"
+                                    android:tint="?attr/colorOnSurfaceVariant" />
+
+                            </LinearLayout>
+
+                        </com.google.android.material.card.MaterialCardView>
+
+                    </LinearLayout>
 
                     <ImageButton
                         android:id="@+id/swapLanguagesButton"
@@ -122,29 +170,77 @@
                         app:tint="?attr/colorPrimary"
                         android:layout_marginHorizontal="8dp" />
 
-                    <com.google.android.material.textfield.TextInputLayout
-                        style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
+                    <LinearLayout
+                        android:id="@+id/targetLanguageContainer"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:layout_marginStart="12dp"
-                        app:boxCornerRadiusBottomEnd="12dp"
-                        app:boxCornerRadiusBottomStart="12dp"
-                        app:boxCornerRadiusTopEnd="12dp"
-                        app:boxCornerRadiusTopStart="12dp">
+                        android:layout_marginStart="16dp"
+                        android:orientation="vertical">
 
-                        <com.google.android.material.textfield.MaterialAutoCompleteTextView
-                            android:id="@+id/targetLanguageDropdown"
+                        <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:hint="Целевой язык"
-                            android:textColor="?attr/colorOnSurface"
-                            android:textColorHint="?attr/colorOnSurfaceVariant" />
+                            android:text="Целевой язык"
+                            android:textSize="14sp"
+                            android:textColor="?attr/colorOnSurfaceVariant"
+                            android:layout_marginBottom="8dp" />
 
-                    </com.google.android.material.textfield.TextInputLayout>
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/targetLanguageCard"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:cardCornerRadius="12dp"
+                            app:cardElevation="2dp"
+                            app:cardBackgroundColor="?attr/colorSurfaceVariant"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:foreground="?attr/selectableItemBackground">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:paddingVertical="12dp"
+                                android:paddingStart="16dp"
+                                android:paddingEnd="12dp"
+                                android:gravity="center_vertical">
+
+                                <ImageView
+                                    android:layout_width="20dp"
+                                    android:layout_height="20dp"
+                                    android:src="@drawable/ic_language"
+                                    android:tint="?attr/colorOnSurfaceVariant"
+                                    android:layout_marginEnd="12dp" />
+
+                                <TextView
+                                    android:id="@+id/targetLanguageText"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1"
+                                    android:text="Английский"
+                                    android:textSize="16sp"
+                                    android:textColor="?attr/colorOnSurface"
+                                    android:singleLine="true"
+                                    android:maxLines="1"
+                                    android:ellipsize="none"
+                                    android:gravity="center_vertical" />
+
+                                <ImageView
+                                    android:layout_width="24dp"
+                                    android:layout_height="24dp"
+                                    android:src="@drawable/ic_arrow_drop_down"
+                                    android:tint="?attr/colorOnSurfaceVariant" />
+
+                            </LinearLayout>
+
+                        </com.google.android.material.card.MaterialCardView>
+
+                    </LinearLayout>
 
                 </LinearLayout>
 
+                <!-- Beautiful Translate Button -->
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/translateButton"
                     android:layout_width="match_parent"
@@ -152,8 +248,13 @@
                     android:text="Перевести"
                     android:textSize="16sp"
                     android:textStyle="bold"
-                    app:backgroundTint="?attr/colorPrimary"
-                    android:textColor="?attr/colorOnPrimary" />
+                    android:background="@drawable/button_gradient"
+                    android:textColor="@color/white"
+                    app:icon="@drawable/ic_translate_white"
+                    app:iconTint="@color/white"
+                    app:iconPadding="8dp"
+                    android:elevation="4dp"
+                    app:cornerRadius="16dp" />
 
             </LinearLayout>
 

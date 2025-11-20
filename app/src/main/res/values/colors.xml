@@ -16,4 +16,16 @@
     <color name="surface_variant_light">#FFE7E0EC</color>
     <color name="on_surface_light">#FF1C1B1E</color>
     <color name="on_surface_variant_light">#FF49454E</color>
+
+    <!-- New Colors for Icons -->
+    <color name="favorite_red">#FFFF5252</color>
+    <color name="delete_yellow">#FFFFC107</color>
+    <color name="button_disabled">#FFB0B0B0</color>
+
+    <!-- Gradient Colors for Button -->
+    <color name="button_gradient_start">#FF667eea</color>
+    <color name="button_gradient_end">#FF764ba2</color>
+
+    <color name="dialog_background">#FFFFFFFF</color>
+    <color name="dialog_background_dark">#FF1E1E1E</color>
 </resources>

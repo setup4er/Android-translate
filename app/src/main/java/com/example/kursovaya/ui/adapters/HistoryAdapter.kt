@@ -34,11 +34,20 @@ class HistoryAdapter(
                 languagesText.text = "${translation.sourceLanguage} → ${translation.targetLanguage}"
                 usageCount.text = "Использовано: ${translation.usageCount}"
 
-                // Правильные иконки для избранного
+                // Красное сердечко для избранного
                 favoriteButton.setImageResource(
                     if (translation.isFavorite) R.drawable.ic_favorite
                     else R.drawable.ic_favorite_border
                 )
+
+                // Устанавливаем цвет для избранного
+                favoriteButton.setColorFilter(
+                    if (translation.isFavorite) root.context.getColor(R.color.favorite_red)
+                    else root.context.getColor(R.color.on_surface_light)
+                )
+
+                // Желтая мусорка
+                deleteButton.setColorFilter(root.context.getColor(R.color.delete_yellow))
 
                 favoriteButton.setOnClickListener {
                     onFavoriteClick(translation)
@@ -54,7 +63,6 @@ class HistoryAdapter(
                     val clip = android.content.ClipData.newPlainText("Перевод", translation.translatedText)
                     clipboard.setPrimaryClip(clip)
 
-                    // Показываем Snackbar
                     com.google.android.material.snackbar.Snackbar.make(
                         root,
                         "Перевод скопирован",

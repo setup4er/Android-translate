@@ -6,4 +6,16 @@
     <color name="surface_variant_dark">#FF2D2D2D</color>
     <color name="on_surface_dark">#FFE6E1E5</color>
     <color name="on_surface_variant_dark">#FFCAC4D0</color>
+
+    <!-- New Colors for Icons (Dark Theme) -->
+    <color name="favorite_red">#FFFF5252</color>
+    <color name="delete_yellow">#FFFFC107</color>
+    <color name="button_disabled">#FF666666</color>
+
+    <!-- Gradient Colors for Button (Dark Theme) -->
+    <color name="button_gradient_start">#FF2c3e50</color>
+    <color name="button_gradient_end">#FF3498db</color>
+
+    <color name="dialog_background">#FFFFFFFF</color>
+    <color name="dialog_background_dark">#FF1E1E1E</color>
 </resources>

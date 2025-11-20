@@ -4,10 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import com.example.kursovaya.R
 import com.example.kursovaya.databinding.FragmentTranslationBinding
+import com.example.kursovaya.ui.dialogs.LanguageSelectionDialog
 import com.example.kursovaya.ui.viewmodels.TranslationViewModel
 import com.example.kursovaya.ui.viewmodels.TranslationViewModelFactory
 import kotlinx.coroutines.flow.collectLatest
@@ -50,22 +53,24 @@ class TranslationFragment : Fragment() {
     }
 
     private fun setupUI() {
-        // Настройка выпадающих списков языков
-        val languageNames = languages.map { it.first }
+        // Устанавливаем начальные языки
+        binding.sourceLanguageText.text = "Русский"
+        binding.targetLanguageText.text = "Английский"
 
-        // Исходный язык (по умолчанию русский)
-        binding.sourceLanguageDropdown.setSimpleItems(languageNames.toTypedArray())
-        binding.sourceLanguageDropdown.setText("Русский", false)
+        // Обработчики для выбора языков
+        binding.sourceLanguageCard.setOnClickListener {
+            showLanguageSelectionDialog(true) // true - для исходного языка
+        }
 
-        // Целевой язык (по умолчанию английский)
-        binding.targetLanguageDropdown.setSimpleItems(languageNames.toTypedArray())
-        binding.targetLanguageDropdown.setText("Английский", false)
+        binding.targetLanguageCard.setOnClickListener {
+            showLanguageSelectionDialog(false) // false - для целевого языка
+        }
 
         // Кнопка перевода
         binding.translateButton.setOnClickListener {
             val text = binding.inputText.text.toString().trim()
-            val sourceLang = languages.find { it.first == binding.sourceLanguageDropdown.text.toString() }?.second ?: "ru"
-            val targetLang = languages.find { it.first == binding.targetLanguageDropdown.text.toString() }?.second ?: "en"
+            val sourceLang = languages.find { it.first == binding.sourceLanguageText.text.toString() }?.second ?: "ru"
+            val targetLang = languages.find { it.first == binding.targetLanguageText.text.toString() }?.second ?: "en"
 
             if (text.isNotEmpty()) {
                 viewModel.translateText(text, sourceLang, targetLang)
@@ -76,12 +81,23 @@ class TranslationFragment : Fragment() {
 
         // Кнопка смены языков
         binding.swapLanguagesButton.setOnClickListener {
-            val currentSource = binding.sourceLanguageDropdown.text.toString()
-            val currentTarget = binding.targetLanguageDropdown.text.toString()
+            val currentSource = binding.sourceLanguageText.text.toString()
+            val currentTarget = binding.targetLanguageText.text.toString()
 
-            binding.sourceLanguageDropdown.setText(currentTarget, false)
-            binding.targetLanguageDropdown.setText(currentSource, false)
+            binding.sourceLanguageText.text = currentTarget
+            binding.targetLanguageText.text = currentSource
         }
+    }
+
+    private fun showLanguageSelectionDialog(isSourceLanguage: Boolean) {
+        val dialog = LanguageSelectionDialog(languages) { languageName, languageCode ->
+            if (isSourceLanguage) {
+                binding.sourceLanguageText.text = languageName
+            } else {
+                binding.targetLanguageText.text = languageName
+            }
+        }
+        dialog.show(parentFragmentManager, "LanguageSelectionDialog")
     }
 
     private fun setupObservers() {
@@ -89,13 +105,14 @@ class TranslationFragment : Fragment() {
             viewModel.translationResult.collectLatest { result ->
                 result?.fold(
                     onSuccess = { translatedText ->
-                        // Теперь получаем просто строку с переведенным текстом
                         binding.translatedText.text = translatedText
                         binding.resultCard.visibility = View.VISIBLE
+                        setTranslateButtonActive()
                     },
                     onFailure = { exception ->
                         binding.translatedText.text = "Ошибка перевода: ${exception.message}"
                         binding.resultCard.visibility = View.VISIBLE
+                        setTranslateButtonActive()
                     }
                 )
             }
@@ -103,9 +120,28 @@ class TranslationFragment : Fragment() {
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewModel.isLoading.collectLatest { isLoading ->
-                binding.translateButton.isEnabled = !isLoading
-                binding.translateButton.text = if (isLoading) "Перевод..." else "Перевести"
+                if (isLoading) {
+                    setTranslateButtonLoading()
+                } else {
+                    setTranslateButtonActive()
+                }
             }
+        }
+    }
+
+    private fun setTranslateButtonLoading() {
+        binding.translateButton.apply {
+            text = "Перевод..."
+            isEnabled = false
+            background = ContextCompat.getDrawable(requireContext(), R.drawable.button_gradient_disabled)
+        }
+    }
+
+    private fun setTranslateButtonActive() {
+        binding.translateButton.apply {
+            text = "Перевести"
+            isEnabled = true
+            background = ContextCompat.getDrawable(requireContext(), R.drawable.button_gradient)
         }
     }
 
