@@ -108,7 +108,6 @@ class FavoritesFragment : Fragment() {
             override fun afterTextChanged(s: Editable?) {}
         })
 
-        // Обработка кнопки поиска на клавиатуре
         binding.searchEditText.setOnEditorActionListener { _, actionId, _ ->
             if (actionId == android.view.inputmethod.EditorInfo.IME_ACTION_SEARCH) {
                 applySortingAndFiltering()
@@ -140,7 +139,6 @@ class FavoritesFragment : Fragment() {
             allFavorites
         }
 
-        // Apply sorting
         filteredList = when (currentSortType) {
             SortType.ALPHABET -> {
                 if (currentSortOrder == SortOrder.ASCENDING) {
@@ -165,7 +163,6 @@ class FavoritesFragment : Fragment() {
     private fun showSortDialog() {
         val dialogBinding = DialogSortBinding.inflate(layoutInflater)
 
-        // Set current selections
         when (currentSortType) {
             SortType.ALPHABET -> dialogBinding.radioAlphabet.isChecked = true
             SortType.USAGE -> dialogBinding.radioUsage.isChecked = true
@@ -185,14 +182,12 @@ class FavoritesFragment : Fragment() {
         }
 
         dialogBinding.buttonApply.setOnClickListener {
-            // Get selected sort type
             currentSortType = when (dialogBinding.radioGroupSortBy.checkedRadioButtonId) {
                 R.id.radioAlphabet -> SortType.ALPHABET
                 R.id.radioUsage -> SortType.USAGE
                 else -> SortType.ALPHABET
             }
 
-            // Get selected order
             currentSortOrder = when (dialogBinding.radioGroupOrder.checkedRadioButtonId) {
                 R.id.radioAscending -> SortOrder.ASCENDING
                 R.id.radioDescending -> SortOrder.DESCENDING

@@ -8,7 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.kursovaya.databinding.FragmentAboutBinding
-import com.example.kursovaya.utils.WindowInsetsHelper
 
 class AboutFragment : Fragment() {
 
@@ -25,20 +24,14 @@ class AboutFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        // Добавляем отступы для избежания перекрытия с нижней панелью
-        WindowInsetsHelper.addBottomPaddingToView(binding.root)
-
         setupUI()
     }
 
     private fun setupUI() {
-        // Основная информация
         binding.appName.text = "Мой Переводчик"
         binding.versionInfo.text = "Версия 1.0"
         binding.developerInfo.text = "Разработано с ❤️ для удобного перевода"
 
-        // Описание приложения
         binding.appDescription.text = """
             "Мой Переводчик" - это современное приложение для мгновенного перевода текста между различными языками. 
             
@@ -72,7 +65,6 @@ class AboutFragment : Fragment() {
     }
 
     private fun rateApp() {
-        // В реальном приложении здесь будет ссылка на Google Play
         com.google.android.material.snackbar.Snackbar.make(
             binding.root,
             "Благодарим за оценку!",
@@ -86,7 +78,6 @@ class AboutFragment : Fragment() {
             "Политика конфиденциальности",
             com.google.android.material.snackbar.Snackbar.LENGTH_LONG
         ).setAction("Подробнее") {
-            // В реальном приложении открываем веб-страницу
             val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://mytranslator.app/privacy"))
             startActivity(intent)
         }.show()

@@ -5,14 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="20dp"
-    android:paddingBottom="80dp"
     android:background="?android:attr/colorBackground">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <!-- Header -->
         <LinearLayout
             android:id="@+id/headerLayout"
             android:layout_width="0dp"
@@ -41,7 +39,6 @@
 
         </LinearLayout>
 
-        <!-- Input Card -->
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/inputCard"
             android:layout_width="0dp"
@@ -93,7 +90,6 @@
 
                 </com.google.android.material.textfield.TextInputLayout>
 
-                <!-- Source Language -->
                 <TextView
                     android:id="@+id/sourceLanguageLabel"
                     android:layout_width="match_parent"
@@ -155,7 +151,6 @@
 
                 </com.google.android.material.card.MaterialCardView>
 
-                <!-- Swap Button - Centered between language cards -->
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/swapLanguagesButton"
                     android:layout_width="48dp"
@@ -170,7 +165,6 @@
                     style="@style/Widget.Material3.Button.Icon"
                     app:cornerRadius="24dp" />
 
-                <!-- Target Language -->
                 <TextView
                     android:id="@+id/targetLanguageLabel"
                     android:layout_width="match_parent"
@@ -233,7 +227,6 @@
 
                 </com.google.android.material.card.MaterialCardView>
 
-                <!-- Translate Button -->
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/translateButton"
                     android:layout_width="match_parent"
@@ -253,7 +246,6 @@
 
         </com.google.android.material.card.MaterialCardView>
 
-        <!-- Result Card -->
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/resultCard"
             android:layout_width="0dp"

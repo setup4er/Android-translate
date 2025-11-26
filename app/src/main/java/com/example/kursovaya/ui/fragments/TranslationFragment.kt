@@ -53,11 +53,9 @@ class TranslationFragment : Fragment() {
     }
 
     private fun setupUI() {
-        // Устанавливаем начальные языки
         binding.sourceLanguageText.text = "Русский"
         binding.targetLanguageText.text = "Английский"
 
-        // Обработчики для выбора языков
         binding.sourceLanguageCard.setOnClickListener {
             showLanguageSelectionDialog(true)
         }
@@ -66,7 +64,6 @@ class TranslationFragment : Fragment() {
             showLanguageSelectionDialog(false)
         }
 
-        // Кнопка перевода
         binding.translateButton.setOnClickListener {
             val text = binding.inputText.text.toString().trim()
             val sourceLang = languages.find { it.first == binding.sourceLanguageText.text.toString() }?.second ?: "ru"
@@ -79,7 +76,6 @@ class TranslationFragment : Fragment() {
             }
         }
 
-        // Кнопка смены языков
         binding.swapLanguagesButton.setOnClickListener {
             val currentSource = binding.sourceLanguageText.text.toString()
             val currentTarget = binding.targetLanguageText.text.toString()

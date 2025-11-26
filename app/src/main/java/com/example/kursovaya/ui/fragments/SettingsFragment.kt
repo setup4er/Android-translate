@@ -37,25 +37,20 @@ class SettingsFragment : Fragment() {
     }
 
     private fun setupUI() {
-        // Переключатель темы
         binding.themeSwitch.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
-                // Включена темная тема
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
                 saveThemePreference(true)
             } else {
-                // Включена светлая тема
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
                 saveThemePreference(false)
             }
         }
 
-        // Кнопка очистки данных
         binding.clearDataButton.setOnClickListener {
             showClearDataConfirmation()
         }
 
-        // Информация о версии
         binding.versionInfo.text = "Версия 1.0"
     }
 
@@ -92,7 +87,6 @@ class SettingsFragment : Fragment() {
             com.google.android.material.snackbar.Snackbar.LENGTH_LONG
         ).show()
 
-        // Обновляем UI после очистки
         binding.root.postDelayed({
             // Можно обновить какие-то элементы UI если нужно
         }, 500)

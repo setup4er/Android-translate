@@ -6,8 +6,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
-import com.example.kursovaya.databinding.ActivityMainBinding
 import com.example.kursovaya.R
+import com.example.kursovaya.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
@@ -16,7 +16,6 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        // Загружаем сохраненную тему перед setContentView
         loadSavedTheme()
 
         binding = ActivityMainBinding.inflate(layoutInflater)
