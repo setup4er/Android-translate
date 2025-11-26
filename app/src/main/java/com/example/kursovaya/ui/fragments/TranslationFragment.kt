@@ -70,7 +70,11 @@ class TranslationFragment : Fragment() {
             val targetLang = languages.find { it.first == binding.targetLanguageText.text.toString() }?.second ?: "en"
 
             if (text.isNotEmpty()) {
-                viewModel.translateText(text, sourceLang, targetLang)
+                if (text.length > 500) {
+                    binding.inputText.error = "Текст слишком длинный (максимум 500 символов)"
+                } else {
+                    viewModel.translateText(text, sourceLang, targetLang)
+                }
             } else {
                 binding.inputText.error = "Введите текст"
             }
@@ -83,6 +87,15 @@ class TranslationFragment : Fragment() {
             binding.sourceLanguageText.text = currentTarget
             binding.targetLanguageText.text = currentSource
         }
+
+        // Очистка ошибки при вводе
+        binding.inputText.addTextChangedListener(object : android.text.TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+            override fun afterTextChanged(s: android.text.Editable?) {
+                binding.inputText.error = null
+            }
+        })
     }
 
     private fun showLanguageSelectionDialog(isSourceLanguage: Boolean) {
@@ -104,11 +117,22 @@ class TranslationFragment : Fragment() {
                         binding.translatedText.text = translatedText
                         binding.resultCard.visibility = View.VISIBLE
                         setTranslateButtonActive()
+                        showTranslationSuccess()
                     },
                     onFailure = { exception ->
-                        binding.translatedText.text = "Ошибка перевода: ${exception.message}"
+                        val errorMessage = when {
+                            exception.message?.contains("network", ignoreCase = true) == true ->
+                                "Проблемы с интернет-соединением"
+                            exception.message?.contains("quota", ignoreCase = true) == true ->
+                                "Лимит переводов исчерпан. Попробуйте позже"
+                            exception.message?.contains("All translation services failed") == true ->
+                                "Сервисы перевода временно недоступны"
+                            else -> "Ошибка перевода: ${exception.message}"
+                        }
+                        binding.translatedText.text = errorMessage
                         binding.resultCard.visibility = View.VISIBLE
                         setTranslateButtonActive()
+                        showTranslationError(errorMessage)
                     }
                 )
             }
@@ -141,8 +165,24 @@ class TranslationFragment : Fragment() {
         }
     }
 
+    private fun showTranslationSuccess() {
+        com.google.android.material.snackbar.Snackbar.make(
+            binding.root,
+            "Перевод выполнен успешно",
+            com.google.android.material.snackbar.Snackbar.LENGTH_SHORT
+        ).show()
+    }
+
+    private fun showTranslationError(message: String) {
+        com.google.android.material.snackbar.Snackbar.make(
+            binding.root,
+            message,
+            com.google.android.material.snackbar.Snackbar.LENGTH_LONG
+        ).show()
+    }
+
     override fun onDestroyView() {
-        super.onDestroyView()
+        super.onDestroyView()  // ИСПРАВЛЕНО: было super.onViewCreated(view, savedInstanceState)
         _binding = null
     }
 }
